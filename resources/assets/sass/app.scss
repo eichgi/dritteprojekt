@@ -1,0 +1,152 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700');
+// Variables
+@import "variables";
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  //border: 0.5px solid #444;
+  font-family: 'Merriweather Sans', sans-serif;
+  min-height: 100vh;
+}
+
+.navbar-inverse {
+  .navbar-nav >
+  li >
+  a {
+    color: #FFF;
+  }
+}
+
+.custom-navbar {
+  margin-bottom: 0;
+}
+
+#section-searching {
+  background-color: $color-blue;
+  text-align: center;
+  padding: 2em 0;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $color-semi-black;
+  }
+
+  input[name=buscar] {
+    font-size: 18px;
+  }
+}
+
+#section-info {
+  background-color: $color-orange;
+  padding: 2em 0;
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    color: $color-white;
+  }
+}
+
+#section-info_element {
+  text-align: center;
+  color: #FFF;
+  font-size: 25px;
+
+  @media(max-width: 768px) {
+    margin-bottom: 1em;
+  }
+
+  .circle-for-icon {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: $color-white;
+
+    i {
+      color: $color-orange;
+      font-size: 30px;
+    }
+  }
+}
+
+#section-support {
+  text-align: center;
+  padding: 2em 0;
+  border-left: 1px solid lighten(#000, 60%);
+  border-right: 1px solid lighten(#000, 60%);
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    color: $color-semi-black;
+  }
+}
+
+footer {
+  background: #000;
+  color: #9d9d9d;
+  padding: 1em;
+
+  span {
+    font-size: 18px;
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+}
+
+#section-login {
+  background-color: $color-white;
+  //border: 1px solid $color-semi-black;
+  padding: 1em 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: center;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: inherit;
+    color: $color-semi-black;
+  }
+
+  .btn-github {
+    background-color: $color-semi-black;
+    color: $color-white;
+
+  }
+}
+
+#section-profile {
+
+  .img-container {
+    @media(max-width: 480px) {
+      width: 50%;
+    }
+    @media(min-width: 481px) and (max-width: 768px) {
+      width: 30%;
+    }
+
+    width: 50%;
+    margin: 2em auto;
+  }
+
+  #section-profile_info {
+    text-align: center;
+    margin: 2em 0;
+
+    @media (min-width: 769px) {
+      padding: 1em;
+      text-align: left;
+    }
+
+    .profile-name {
+      font-weight: 700;
+    }
+  }
+
+}
