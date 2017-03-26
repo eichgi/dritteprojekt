@@ -10,7 +10,8 @@
                     <input type="text" class="form-control" name="buscar">
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-warning btn-lg" value="BUSCAR">
+                    <a href="{{url('/buscador')}}" class="btn btn-warning btn-lg">BUSCAR</a>
+                    {{--<input type="submit" class="btn btn-warning btn-lg" value="BUSCAR">--}}
                 </div>
             </form>
         </section>
@@ -34,7 +35,7 @@
                 <div class="circle-for-icon">
                     <i class="fa fa-desktop"></i>
                 </div>
-                <p>Cursos en línea</p>
+                <p>Cursos online</p>
             </div>
             <div id="section-info_element" class="col-sm-4">
                 <div class="circle-for-icon">

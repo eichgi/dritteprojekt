@@ -22,3 +22,11 @@ Route::get('/login', function () {
 Route::get('/perfil', function () {
     return view('perfil');
 });
+
+Route::get('/recursos', function () {
+    return view('recursos');
+});
+
+Route::get('/buscador', function () {
+    return view('buscador');
+});

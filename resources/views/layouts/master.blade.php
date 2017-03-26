@@ -36,5 +36,6 @@
 <!-- Scripts -->
 <script src="{{url('js/jquery.js')}}"></script>
 <script src="{{url('js/bootstrap.js')}}"></script>
+@yield('script')
 </body>
 </html>

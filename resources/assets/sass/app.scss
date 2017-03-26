@@ -26,6 +26,17 @@ body {
   margin-bottom: 0;
 }
 
+.card {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+  background-color: $color-white;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.card-profile {
+  padding: 1em;
+}
+
 #section-searching {
   background-color: $color-blue;
   text-align: center;
@@ -107,7 +118,6 @@ footer {
   margin-top: 1em;
   margin-bottom: 1em;
   text-align: center;
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 
   h1, h2, h3, h4, h5, h6 {
     text-align: inherit;
@@ -117,11 +127,21 @@ footer {
   .btn-github {
     background-color: $color-semi-black;
     color: $color-white;
-
+    border-radius: 3px;
+    padding: 10px 30px;
   }
 }
 
+#section-about {
+  background-color: $color-white;
+  padding: 1em 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 #section-profile {
+
+  margin-top: 1em;
 
   .img-container {
     @media(max-width: 480px) {
@@ -149,4 +169,44 @@ footer {
     }
   }
 
+}
+
+#section-resources {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+
+  .options-heading {
+    margin: 1em 0;
+  }
+
+}
+
+.nav-justified > li > a {
+  border: 1px solid #ddd;
+}
+
+#section-busqueda {
+  margin-top: 1em;
+  padding: 2em;
+}
+
+hr.styled-hr {
+  padding: 0;
+  border: none;
+  border-top: medium double #333;
+  color: #333;
+  text-align: center;
+}
+
+hr.styled-hr:after {
+  content: "§";
+  content: "RESULTADOS";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
+  background: #f5f8fa;
 }
