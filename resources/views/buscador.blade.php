@@ -4,15 +4,28 @@
 
     <div class="row">
         <section id="section-busqueda" class="card col-md-10 col-md-offset-1">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="searching" placeholder="Escribe tu busqueda..."
-                           value="Android para principiantes">
+            {!! Form::open(['url' => '/buscador', 'method' => 'GET']) !!}
+            <div class="form-group">
+                <input type="text" class="form-control" name="searching" placeholder="Escribe tu busqueda..."
+                       value="{{isset($searching) ? $searching : ''}}">
+            </div>
+            <div class="form-group">
+                <div class="btn btn-sm btn-default btn-filtro">Filtrar</div>
+                <div class="filter-container">
+                    @foreach($types as $type)
+                        <div class="checkbox-inline">
+                            <label>
+                                {{ Form::checkbox($type->name, null, [])}}{{$type->name}}
+                                {{--<input type="checkbox" name="{{$type->name}}"> {{$type->name}}--}}
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="form-group text-center">
-                    <input type="submit" class="btn btn-primary" value="BUSCAR">
-                </div>
-            </form>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" class="btn btn-primary" value="BUSCAR">
+            </div>
+            {!! Form::close() !!}
         </section>
     </div>
 
@@ -23,9 +36,30 @@
     </div>
     <div class="row">
         <section id="section-results" class="card col-md-10 col-md-offset-1">
-            Tu búsqueda: <a href="#" style="font-style: italic">Android para principiantes</a>
+            @if($recursos)
+                Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>
+                @foreach($recursos as $recurso)
+                    <div class="result">
+                        <hr>
+                        <h4>{{$recurso->name}}
+                            <span class="label label-primary">
+                            <i class="{{$recurso->icon}}"></i>
+                                {{$recurso->tipo}}
+                        </span>
+                        </h4>
+                        <a href="{{$recurso->link}}" target="_blank">{{$recurso->link}}</a>
+                        <p>{{$recurso->description}}</p>
+                    </div>
+                @endforeach
+                <br>
+                <div class="text-center">
+                    {{$recursos->appends(['searching' => 'PHP'])->links()}}
+                </div>
+            @else
+                <p>No se encontraron resultados para esta búsqueda</p>
+            @endif
 
-            <div class="result">
+            {{--<div class="result">
                 <hr>
                 <h4>Android desde cero en Escuela Digital <span class="label label-primary"><i
                                 class="fa fa-desktop"></i> Curso online</span></h4>
@@ -47,9 +81,9 @@
                                 class="fa fa-book"></i> Libro</span></h4>
                 <a href="#">http://marcombo.com/el-gran-libro-de-android-2016</a>
                 <p>Uno de los mejores libros para Android en Castellano y con guías para...</p>
-            </div>
-            <br>
-            <nav class="text-center" aria-label="Page navigation">
+            </div>--}}
+
+            {{--<nav class="text-center" aria-label="Page navigation">
                 <ul class="pagination">
                     <li>
                         <a href="#" aria-label="Previous">
@@ -67,7 +101,15 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav>--}}
         </section>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $('.btn-filtro').click(function (e) {
+            $('.filter-container').toggle();
+        });
+    </script>
 @endsection

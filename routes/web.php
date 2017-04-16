@@ -11,6 +11,10 @@
 |
 */
 
+
+//use Illuminate\Support\Facades\Route;
+
+
 Route::get('/', function () {
     return view('home');
 });
@@ -23,10 +27,12 @@ Route::get('/perfil', function () {
     return view('perfil');
 });
 
-Route::get('/recursos', function () {
-    return view('recursos');
-});
+Route::get('/recursos', 'MainController@recursos');
 
-Route::get('/buscador', function () {
-    return view('buscador');
-});
+Route::get('/buscador', 'MainController@buscador');
+
+Route::get('/joker', 'JokerController@getWhatIWant');
+
+//Route::get('/resource/show/{id}', 'ResourceController@show');
+
+Route::resource('resource', 'ResourceController');

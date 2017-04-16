@@ -5,15 +5,17 @@
     <div class="row">
         <section id="section-searching" class="col-xs-12">
             <h1>¿Qué deseas aprender?</h1>
-            <form>
-                <div class="form-group col-xs-10 col-xs-offset-1">
-                    <input type="text" class="form-control" name="buscar">
-                </div>
-                <div class="form-group">
-                    <a href="{{url('/buscador')}}" class="btn btn-warning btn-lg">BUSCAR</a>
-                    {{--<input type="submit" class="btn btn-warning btn-lg" value="BUSCAR">--}}
-                </div>
-            </form>
+            {!! Form::open(['url' => '/buscador', 'method' => 'GET']) !!}
+            <div class="form-group col-xs-10 col-xs-offset-1">
+                {{--<input type="text" class="form-control" name="buscar">--}}
+                {{Form::text('searching', null, ['class' => 'form-control', 'required' => 'required'])}}
+            </div>
+            <div class="form-group">
+                {{--<a href="{{url('/buscador')}}" class="btn btn-warning btn-lg">BUSCAR</a>--}}
+                {{--<input type="submit" class="btn btn-warning btn-lg" value="BUSCAR">--}}
+                {{Form::submit('BUSCAR', ['class' => 'btn btn-primary btn-lg'])}}
+            </div>
+            {!! Form::close() !!}
         </section>
     </div>
 

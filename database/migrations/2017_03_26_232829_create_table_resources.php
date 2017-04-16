@@ -15,11 +15,16 @@ class CreateTableResources extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->text('description');
+            $table->string('name');
+            $table->integer('type_id');
+            $table->integer('has_cost')->default(0);
+            $table->integer('language_id')->unsigned()->index();
+            #$table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
             $table->string('link');
-            $table->string('tags');
+            $table->text('description');
+            $table->string('tags')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
