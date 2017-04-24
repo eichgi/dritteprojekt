@@ -22,7 +22,6 @@
                             <th>Nombre</th>
                             <th>Enlace</th>
                             <th>Lenguaje</th>
-                            {{--<th>Creación</th>--}}
                             <th>Opciones</th>
                         </tr>
                         </thead>
@@ -32,7 +31,6 @@
                                 <td>{{$resource->name}}</td>
                                 <td><a href="{{$resource->link}}" target="_blank">{{$resource->link}}</a></td>
                                 <td>{{$resource->language->name}}</td>
-                                {{--<td>{{$resource->created_at->diffForHumans()}}</td>--}}
                                 <td>
                                     <a href="{{url("/resource/$resource->id/edit")}}" style="display: inline-block">
                                         <i class="fa fa-edit"></i>
@@ -43,11 +41,6 @@
                                 </td>
                             </tr>
                         @endforeach
-                        {{--<tr>
-                            <td>Tutorial Node JS</td>
-                            <td><a href="#">http://escuela.digital/nodejs</a></td>
-                            <td>01 de Marzo de 2017</td>
-                        </tr>--}}
                         </tbody>
                     </table>
                 </div>

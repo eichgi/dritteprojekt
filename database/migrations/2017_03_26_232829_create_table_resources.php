@@ -16,6 +16,7 @@ class CreateTableResources extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('user_id');
             $table->integer('type_id');
             $table->integer('has_cost')->default(0);
             $table->integer('language_id')->unsigned()->index();

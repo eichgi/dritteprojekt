@@ -9,17 +9,25 @@ use Illuminate\Support\Facades\Redirect;
 class LoginController extends Controller
 {
 
+    public function __construct()
+    {
+        //$this->middleware('checkAuth')->only('index');
+        $this->middleware('guest')->only('index', 'login', 'signUpForm', 'signUp');
+    }
+
     public function index(Request $request)
     {
-        if (!$request->session()->get('usuario_id')) {
+        /*if (!$request->session()->get('usuario_id')) {
             return view('auth.login');
         } else {
             return redirect('/');
-        }
+        }*/
+        return view('auth.login');
     }
 
     public function login(Request $request)
     {
+        //dd($request);
         $email = $request->email;
         $password = $request->password;
 
@@ -54,7 +62,7 @@ class LoginController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->password = $request->password;
         $user->save();
 
         return Redirect::to('/');

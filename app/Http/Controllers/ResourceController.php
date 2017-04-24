@@ -16,7 +16,12 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        dd('Hola perros');
+        $resources = Resource::all();
+        $languages = Language::pluck('name', 'id');
+        $types = Type::pluck('name', 'id');
+        $method = 'POST';
+        $url = '/resource';
+        return view('recursos', compact('resources', 'languages', 'types', 'method', 'url'));
     }
 
     /**

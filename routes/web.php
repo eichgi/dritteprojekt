@@ -26,9 +26,10 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::get('/perfil', function () {
     return view('perfil');
-});
+})->middleware('checkAuth');
 
-Route::get('/recursos', 'MainController@recursos');
+//Route::get('/recursos', 'MainController@recursos');
+//Route::get('/recursos', 'MainController');
 
 Route::get('/buscador', 'MainController@buscador');
 

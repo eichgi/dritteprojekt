@@ -41,7 +41,7 @@
                     <li><a href="{{url('/login')}}">ENTRAR</a></li>
                 @else
                     <li><a href="{{url('/perfil')}}">PERFIL</a></li>
-                    <li><a href="{{url('/recursos')}}">RECURSOS</a></li>
+                    <li><a href="{{url('/resource')}}">RECURSOS</a></li>
                     <li><a href="{{url('/logout')}}">SALIR</a></li>
                 @endif
                 {{--<li class="dropdown">
