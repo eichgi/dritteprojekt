@@ -10,10 +10,10 @@
                 </div>
             </div>
             <div id="section-profile_info" class="col-md-8">
-                <p class="profile-name">Hiram Guerrerock</p>
-                <p><a href="#">hiramg90@gmail.com</a></p>
-                <p>Has compartido 19 recursos</p>
-                <p>Registrado desde 24 de Marzo de 2017</p>
+                <p class="profile-name">{{$usuario->name}}</p>
+                <p><a href="#">{{$usuario->email}}</a></p>
+                <p>Has compartido {{$usuario->count}} recursos</p>
+                <p>Registrado desde hace {{$usuario->created_at->toFormattedDateString()}}</p>
             </div>
         </div>
     </div>

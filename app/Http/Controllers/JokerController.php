@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Language;
 use App\Resource;
+use App\User;
 use Illuminate\Http\Request;
 
 class JokerController extends Controller
@@ -29,5 +30,14 @@ class JokerController extends Controller
         curl_exec($ch);
         curl_close($ch);
         fclose($fp);*/
+    }
+
+    public function joker()
+    {
+        /*$resourcesByUser = User::find(1)->resources();
+        dd($resourcesByUser);*/
+
+        /*$recurso = Resource::find(3);
+        dd($recurso->user);*/
     }
 }

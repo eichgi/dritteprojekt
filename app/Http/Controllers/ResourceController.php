@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Language;
 use App\Resource;
 use App\Type;
+use App\User;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -16,7 +17,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        $resources = Resource::all();
+        $resources = User::find(session('usuario_id'))->resources;
         $languages = Language::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'POST';
@@ -51,6 +52,7 @@ class ResourceController extends Controller
 
         $resource = new Resource;
         $resource->name = $request->name;
+        $resource->user_id = session('usuario_id');
         $resource->type_id = $request->type_id;
         if (isset($request->has_cost) && $request->has_cost != null) {
             $resource->has_cost = 1;

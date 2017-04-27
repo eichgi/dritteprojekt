@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resource extends Model
 {
-    protected $fillable = ['name', 'type', 'has_cost', 'language', 'link', 'description', 'tags'];
+    protected $fillable = ['name', 'type', 'has_cost', 'language', 'link', 'description', 'tags', 'user'];
 
     use SoftDeletes;
 
@@ -19,5 +19,10 @@ class Resource extends Model
     public function type()
     {
         return $this->belongsTo('App\Type');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

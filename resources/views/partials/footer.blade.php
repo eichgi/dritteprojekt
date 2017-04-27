@@ -1,5 +1,5 @@
 <div class="row">
-    <footer>
-        <span>DREI PROJEKT</span> by Hiram Guerrero
+    <footer class="text-center">
+        <span>DRITTE PROJEKT</span> by Hiram Guerrero
     </footer>
 </div>

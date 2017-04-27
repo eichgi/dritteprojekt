@@ -24,15 +24,13 @@ Route::get('/signup', 'LoginController@signUpForm');
 Route::post('/signup', 'LoginController@signUp');
 Route::get('/logout', 'LoginController@logout');
 
-Route::get('/perfil', function () {
-    return view('perfil');
-})->middleware('checkAuth');
+Route::resource('perfil', 'ProfileController');
 
 //Route::get('/recursos', 'MainController@recursos');
 //Route::get('/recursos', 'MainController');
 
 Route::get('/buscador', 'MainController@buscador');
 
-Route::get('/joker', 'JokerController@getWhatIWant');
+Route::get('/joker', 'JokerController@joker');
 
 Route::resource('resource', 'ResourceController');
