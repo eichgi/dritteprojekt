@@ -24,10 +24,27 @@ class MainController extends Controller
     public function buscador(Request $request)
     {
         $types = Type::all();
+
+        return view('buscador', compact('types'));
+    }
+
+    public function buscar(Request $request)
+    {
+
+        $types = Type::all();
         $searching = (isset($request->searching) ? $request->searching : '');
-        $filter = $this->getTypes($request);
+        $request->session()->put('searching', $searching);
+        if (isset($request->types)) {
+            $request->session()->put('types', $request->types);
+            $filter = str_split($request->types, 1);
+        } else {
+            $filter = $this->getTypes($request);
+            $request->session()->put('types', implode('', $filter));
+        }
+
         $filtering = [];
 
+        /** Here we get which filters (resources types) were picked*/
         for ($i = 1; $i <= count($types); $i++) {
             if (in_array($i, $filter)) {
                 array_push($filtering, 1);
@@ -44,9 +61,10 @@ class MainController extends Controller
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
                 ->latest()
                 ->limit(6)
-                ->paginate(10);
+                ->paginate(5);
             $searching = 'Últimos recursos agregados';
             return view('buscador', compact('recursos', 'types', 'searching', 'filtering'));
+
         } else {
             $recursos = DB::table('resources')
                 ->join('types', 'types.id', '=', 'resources.type_id')
@@ -57,9 +75,7 @@ class MainController extends Controller
                 ])
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
                 //->get();
-                ->paginate(10);
-
-            //$recursos->withPath('?searching=PHP');
+                ->paginate(5);
 
             return view('buscador', compact('recursos', 'types', 'searching', 'filtering'));
         }

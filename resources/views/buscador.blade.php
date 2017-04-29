@@ -4,7 +4,7 @@
 
     <div class="row">
         <section id="section-busqueda" class="card col-md-10 col-md-offset-1">
-            {!! Form::open(['url' => '/buscador', 'method' => 'GET']) !!}
+            {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
             <div class="form-group">
                 <input type="text" class="form-control" name="searching" placeholder="Escribe tu busqueda..."
                        value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}">
@@ -15,8 +15,11 @@
                     @foreach($types as $key => $type)
                         <div class="checkbox-inline">
                             <label>
-                                {{ Form::checkbox($type->name, null, ($filtering[$key]) ? true : false)}}{{$type->name}}
-                                {{--<input type="checkbox" name="{{$type->name}}"> {{$type->name}}--}}
+                                @if(isset($filtering))
+                                    {{ Form::checkbox($type->name, null, ($filtering[$key]) ? true : false)}}{{$type->name}}
+                                @else
+                                    {{ Form::checkbox($type->name, null, false)}}{{$type->name}}
+                                @endif
                             </label>
                         </div>
                     @endforeach
@@ -32,11 +35,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <hr class="styled-hr">
+            {{--{{print_r($paginatorQuery)}}
+            {{print_r(['Hola' => 'A todos'])}}--}}
         </div>
     </div>
     <div class="row">
         <section id="section-results" class="card col-md-10 col-md-offset-1">
-            @if($recursos)
+            @if(isset($recursos))
                 Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>
                 @foreach($recursos as $recurso)
                     <div class="result">
@@ -53,14 +58,12 @@
                 @endforeach
                 <br>
                 <div class="text-center">
-                    @if($searching)
-                        {{$recursos->appends(['searching' => 'PHP'])->links()}}
-                    @else
-                        {{$recursos->appends(['searching' => ''])->links()}}
-                    @endif
+                    {{$recursos->appends(['searching' => session('searching', ''), 'types' => session('types', '')])->links()}}
                 </div>
-            @else
+            @elseif (isset($searching) && $searching != '')
                 <p>No se encontraron resultados para esta búsqueda</p>
+            @else
+                <p>Por favor define una búsqueda...</p>
             @endif
 
             {{--<div class="result">
@@ -86,26 +89,6 @@
                 <a href="#">http://marcombo.com/el-gran-libro-de-android-2016</a>
                 <p>Uno de los mejores libros para Android en Castellano y con guías para...</p>
             </div>--}}
-
-            {{--<nav class="text-center" aria-label="Page navigation">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>--}}
         </section>
     </div>
 @endsection
@@ -115,5 +98,13 @@
         $('.btn-filtro').click(function (e) {
             $('.filter-container').toggle();
         });
+
+        function displayIfPicked() {
+            if ($('input:checked').length) {
+                $('.filter-container').show();
+            }
+        }
+
+        displayIfPicked();
     </script>
 @endsection

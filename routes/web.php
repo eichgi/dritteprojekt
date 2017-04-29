@@ -30,6 +30,7 @@ Route::resource('perfil', 'ProfileController');
 //Route::get('/recursos', 'MainController');
 
 Route::get('/buscador', 'MainController@buscador');
+Route::get('/buscar', 'MainController@buscar');
 
 Route::get('/joker', 'JokerController@joker');
 
