@@ -23,39 +23,45 @@ class MainController extends Controller
 
     public function buscador(Request $request)
     {
-        //dd($request->query);
         $types = Type::all();
         $searching = (isset($request->searching) ? $request->searching : '');
-        $recursos = [];
+        $filter = $this->getTypes($request);
+        $filtering = [];
+
+        for ($i = 1; $i <= count($types); $i++) {
+            if (in_array($i, $filter)) {
+                array_push($filtering, 1);
+            } else {
+                array_push($filtering, 0);
+            }
+        }
 
         if (empty($request->searching)) {
-            return view('buscador', compact('recursos', 'types', 'searching'));
-        } else {
-            $filter = $this->getTypes($request);
-            //dd($filter);
-
-            /*$recursos = Resource::where([
-                ['name', 'like', "%{$request->searching}%"]
-            ])->get();*/
-
+            /** If searching was empty, we will response with the six latest resources added */
             $recursos = DB::table('resources')
                 ->join('types', 'types.id', '=', 'resources.type_id')
-                //->select('resources.name as recurso', 'types.name as tipo')
-                ->select('resources.*', 'types.name as tipo', 'types.icon')
+                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class')
+                ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
+                ->latest()
+                ->limit(6)
+                ->paginate(10);
+            $searching = 'Últimos recursos agregados';
+            return view('buscador', compact('recursos', 'types', 'searching', 'filtering'));
+        } else {
+            $recursos = DB::table('resources')
+                ->join('types', 'types.id', '=', 'resources.type_id')
+                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class')
                 ->where([
                     ['resources.name', 'like', "%{$request->searching}%"]
                     //['resources.type_id', '=', '1']
                 ])
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
-                //->where('resources.type_id', 'in', '(1)')
                 //->get();
-                ->paginate(1);
+                ->paginate(10);
 
             //$recursos->withPath('?searching=PHP');
 
-            //dd($recursos);
-
-            return view('buscador', compact('recursos', 'types', 'searching'));
+            return view('buscador', compact('recursos', 'types', 'searching', 'filtering'));
         }
     }
 
@@ -84,7 +90,6 @@ class MainController extends Controller
             }
         }
 
-        //dd($filtro);
         return $filtro;
     }
 }

@@ -7,15 +7,15 @@
             {!! Form::open(['url' => '/buscador', 'method' => 'GET']) !!}
             <div class="form-group">
                 <input type="text" class="form-control" name="searching" placeholder="Escribe tu busqueda..."
-                       value="{{isset($searching) ? $searching : ''}}">
+                       value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}">
             </div>
             <div class="form-group">
                 <div class="btn btn-sm btn-default btn-filtro">Filtrar</div>
                 <div class="filter-container">
-                    @foreach($types as $type)
+                    @foreach($types as $key => $type)
                         <div class="checkbox-inline">
                             <label>
-                                {{ Form::checkbox($type->name, null, [])}}{{$type->name}}
+                                {{ Form::checkbox($type->name, null, ($filtering[$key]) ? true : false)}}{{$type->name}}
                                 {{--<input type="checkbox" name="{{$type->name}}"> {{$type->name}}--}}
                             </label>
                         </div>
@@ -42,7 +42,7 @@
                     <div class="result">
                         <hr>
                         <h4>{{$recurso->name}}
-                            <span class="label label-primary">
+                            <span class="label {{$recurso->class}}">
                             <i class="{{$recurso->icon}}"></i>
                                 {{$recurso->tipo}}
                         </span>
@@ -53,7 +53,11 @@
                 @endforeach
                 <br>
                 <div class="text-center">
-                    {{$recursos->appends(['searching' => 'PHP'])->links()}}
+                    @if($searching)
+                        {{$recursos->appends(['searching' => 'PHP'])->links()}}
+                    @else
+                        {{$recursos->appends(['searching' => ''])->links()}}
+                    @endif
                 </div>
             @else
                 <p>No se encontraron resultados para esta búsqueda</p>
