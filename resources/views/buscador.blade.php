@@ -35,8 +35,6 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <hr class="styled-hr">
-            {{--{{print_r($paginatorQuery)}}
-            {{print_r(['Hola' => 'A todos'])}}--}}
         </div>
     </div>
     <div class="row">
@@ -48,11 +46,11 @@
                         <hr>
                         <h4>{{$recurso->name}}
                             <span class="label {{$recurso->class}}">
-                            <i class="{{$recurso->icon}}"></i>
+                                <i class="{{$recurso->icon}}"></i>
                                 {{$recurso->tipo}}
-                        </span>
+                            </span>
                         </h4>
-                        <a href="{{$recurso->link}}" target="_blank">{{$recurso->link}}</a>
+                        <a href="{{$recurso->link}}" target="_blank">{{$recurso->link}}</a> <span class="text-gray span-left">Added {{$recurso->created_at}}</span>
                         <p>{{$recurso->description}}</p>
                     </div>
                 @endforeach

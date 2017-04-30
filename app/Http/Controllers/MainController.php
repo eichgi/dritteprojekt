@@ -7,6 +7,7 @@ use App\Resource;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MainController extends Controller
 {
@@ -19,13 +20,6 @@ class MainController extends Controller
         $method = 'POST';
         $url = '/resource';
         return view('recursos', compact('resources', 'languages', 'types', 'method', 'url'));
-    }
-
-    public function buscador(Request $request)
-    {
-        $types = Type::all();
-
-        return view('buscador', compact('types'));
     }
 
     public function buscar(Request $request)
@@ -96,9 +90,7 @@ class MainController extends Controller
         foreach ($types as $type) {
             array_push($tipos, $type);
         }
-        //dd($request->request);
-        //dd(array_search('Canales de Youtub', $tipos));
-        $filtro = [];
+
         for ($i = 0; $i < count($busqueda); $i++) {
             $index = array_search($busqueda[$i], $tipos);
             if (is_int($index)) {
@@ -107,5 +99,10 @@ class MainController extends Controller
         }
 
         return $filtro;
+    }
+
+    public function about()
+    {
+        return view('about');
     }
 }

@@ -11,8 +11,7 @@
 */
 
 
-//use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
@@ -26,12 +25,8 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::resource('perfil', 'ProfileController');
 
-//Route::get('/recursos', 'MainController@recursos');
-//Route::get('/recursos', 'MainController');
-
-Route::get('/buscador', 'MainController@buscador');
 Route::get('/buscar', 'MainController@buscar');
-
+Route::get('/about', 'MainController@about');
 Route::get('/joker', 'JokerController@joker');
 
 Route::resource('resource', 'ResourceController');
