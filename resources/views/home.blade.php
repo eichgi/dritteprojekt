@@ -60,7 +60,7 @@
         <section id="section-support" class="col-xs-12">
             <h1>¿Interesado en participar y compartir?</h1>
             <br>
-            <a href="#" class="btn btn-primary btn-lg">
+            <a href="{{url('/login/github')}}" class="btn btn-primary btn-lg">
                 Entrar con Github
                 <i class="fa fa-github"></i>
             </a>

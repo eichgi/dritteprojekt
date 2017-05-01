@@ -21,6 +21,8 @@ Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 Route::get('/signup', 'LoginController@signUpForm');
 Route::post('/signup', 'LoginController@signUp');
+Route::get('/login/{provider}', 'LoginController@redirectToProvider');
+Route::get('/login/{provider}/callback', 'LoginController@handleProviderCallback');
 Route::get('/logout', 'LoginController@logout');
 
 Route::resource('perfil', 'ProfileController');

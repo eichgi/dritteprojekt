@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -17,17 +19,11 @@ class LoginController extends Controller
 
     public function index(Request $request)
     {
-        /*if (!$request->session()->get('usuario_id')) {
-            return view('auth.login');
-        } else {
-            return redirect('/');
-        }*/
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        //dd($request);
         $email = $request->email;
         $password = $request->password;
 
@@ -66,6 +62,50 @@ class LoginController extends Controller
         $user->save();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->user();
+
+        if ($this->findOrCreateUser($user, $provider)) {
+            return redirect('/');
+        }
+    }
+
+    public function findOrCreateUser($user, $provider)
+    {
+        $newUser = User::where('provider_id', $user->id)->first();
+
+        if (count($newUser) == 0) {
+            $newUser = new User;
+            $newUser->name = $user->name;
+            $newUser->email = $user->email;
+            $newUser->provider = $provider;
+            $newUser->provider_id = $user->id;
+            $newUser->save();
+            $newUser = User::where('provider_id', $user->id)->first();
+        }
+
+        session(['email' => $newUser->email]);
+        session(['usuario_id' => $newUser->id]);
+
+        return true;
     }
 
     public function logout(Request $request)

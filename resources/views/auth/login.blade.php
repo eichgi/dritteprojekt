@@ -31,14 +31,21 @@
                     </div>
                     <div class="form-group text-center">
                         {{Form::submit('Entrar', ['class' => 'btn btn-primary'])}}
+                        <a href="{{url('/login/github')}}" class="btn btn-primary">
+                            Entrar con Github <i class="fa fa-github"></i>
+                        </a>
                     </div>
                     {!! Form::close() !!}
 
                     @include('partials.flash-message')
                 </div>
             </div>
-            <br>
-            <a href="{{url('/signup')}}">Registrarme para acceder</a>
+
+            <div class="panel panel-default">
+                <div class="panel-body text-center">
+                    <a href="{{url('/signup')}}" class="btn btn-primary">Registrarme para acceder</a>
+                </div>
+            </div>
         </div>
         {{--<div class="col-sm-6">
             <br>
