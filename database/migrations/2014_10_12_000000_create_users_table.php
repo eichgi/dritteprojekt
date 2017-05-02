@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('provider_id')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

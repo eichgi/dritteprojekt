@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GithubUser;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,10 @@ class ProfileController extends Controller
     public function index()
     {
         $usuario = User::find(session('usuario_id'));
+        $github = GithubUser::where('user_id', $usuario->provider_id)->first();
         $count = User::find(session('usuario_id'))->resources->count();
         $usuario->count = $count;
-        return view('profile.profile', compact('usuario'));
+        return view('profile.profile', compact('usuario', 'github'));
     }
 
     /**

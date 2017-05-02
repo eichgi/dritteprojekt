@@ -40,7 +40,7 @@
                 @if(session('usuario_id') == '')
                     <li><a href="{{url('/login')}}">ENTRAR</a></li>
                 @else
-                    <li><a href="{{url('/perfil')}}">PERFIL</a></li>
+                    <li><a href="{{url('/profile')}}">PERFIL</a></li>
                     <li><a href="{{url('/resource')}}">RECURSOS</a></li>
                     <li><a href="{{url('/logout')}}">SALIR</a></li>
                 @endif

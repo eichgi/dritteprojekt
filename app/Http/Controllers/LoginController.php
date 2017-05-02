@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GithubUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,6 +84,8 @@ class LoginController extends Controller
     {
         $user = Socialite::driver($provider)->user();
 
+        //dd($user);
+
         if ($this->findOrCreateUser($user, $provider)) {
             return redirect('/');
         }
@@ -99,6 +102,15 @@ class LoginController extends Controller
             $newUser->provider = $provider;
             $newUser->provider_id = $user->id;
             $newUser->save();
+
+            GithubUser::create([
+                'user_id' => $user->id,
+                'nickname' => $user->nickname,
+                'avatar' => $user->avatar,
+                'profile_url' => $user->user['html_url'],
+                'bio' => $user->user['bio']
+            ]);
+
             $newUser = User::where('provider_id', $user->id)->first();
         }
 

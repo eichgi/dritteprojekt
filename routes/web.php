@@ -25,7 +25,7 @@ Route::get('/login/{provider}', 'LoginController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'LoginController@handleProviderCallback');
 Route::get('/logout', 'LoginController@logout');
 
-Route::resource('perfil', 'ProfileController');
+Route::resource('profile', 'ProfileController');
 
 Route::get('/buscar', 'MainController@buscar');
 Route::get('/about', 'MainController@about');

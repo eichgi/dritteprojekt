@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -30,5 +32,10 @@ class User extends Authenticatable
     public function resources()
     {
         return $this->hasMany('App\Resource');
+    }
+
+    public function githubUser()
+    {
+        return $this->hasOne('App\GitHubUser', 'user_id');
     }
 }

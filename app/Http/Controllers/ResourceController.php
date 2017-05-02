@@ -22,7 +22,7 @@ class ResourceController extends Controller
         $types = Type::pluck('name', 'id');
         $method = 'POST';
         $url = '/resource';
-        return view('recursos', compact('resources', 'languages', 'types', 'method', 'url'));
+        return view('resources', compact('resources', 'languages', 'types', 'method', 'url'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ResourceController extends Controller
      */
     public function edit($id)
     {
-        $resources = Resource::all();
+        $resources = User::find(session('usuario_id'))->resources;
         $languages = Language::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'PATCH';
@@ -98,7 +98,7 @@ class ResourceController extends Controller
         $recurso = Resource::find($id);
         $url = "/resource/$recurso->id";
 
-        return view('recursos', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
+        return view('resources', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
     }
 
     /**
@@ -110,7 +110,6 @@ class ResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request);
         $this->validate($request, [
             'name' => 'required',
             'link' => 'required',
@@ -120,9 +119,7 @@ class ResourceController extends Controller
         $resource = Resource::find($id);
         $resource->name = $request->name;
         $resource->type_id = $request->type_id;
-        if (isset($request->has_cost) && $request->has_cost != null) {
-            $resource->has_cost = 1;
-        }
+        $resource->has_cost = ($request->has('has_cost')) ? 1 : 0;
         $resource->language_id = $request->language_id;
         $resource->link = $request->link;
         $resource->description = $request->description;
@@ -130,7 +127,7 @@ class ResourceController extends Controller
 
         $resource->save();
         //return back()->with('success', 'Recurso actualizado satisfactoriamente');
-        return redirect('/recursos')->with('success', 'Recurso actualizado satisfactoriamente');
+        return redirect('/resource')->with('success', 'Recurso actualizado satisfactoriamente');
     }
 
     /**
