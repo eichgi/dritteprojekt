@@ -42,7 +42,7 @@
             @if(isset($recursos))
                 Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>
                 @foreach($recursos as $recurso)
-                    <div class="result">
+                    {{--<div class="result">
                         <hr>
                         <h4>{{$recurso->name}}
                             <span class="label {{$recurso->class}}">
@@ -50,8 +50,21 @@
                                 {{$recurso->tipo}}
                             </span>
                         </h4>
-                        <a href="{{$recurso->link}}" target="_blank">{{$recurso->link}}</a> <span class="text-gray span-left">Added {{$recurso->created_at}}</span>
+                        <i><a href="{{$recurso->link}}" target="_blank">{{$recurso->link}}</a></i>
+                        <span class="text-gray span-left">Added {{$recurso->created_at}}</span>
                         <p>{{$recurso->description}}</p>
+                    </div>--}}
+                    <div class="result">
+                        <hr>
+                        <h4>{{$recurso->name}}
+                            <span class="label {{$recurso->class}} span-left">
+                                <i class="{{$recurso->icon}}"></i> {{$recurso->tipo}}
+                            </span>
+                            <span class="text-gray float-right hidden-xs">Agregado por {{$recurso->user}} {{Carbon\Carbon::parse($recurso->created_at)->diffForHumans()}}</span>
+                        </h4>
+                        <p>{{$recurso->description}}</p>
+                        <a href="#" class="btn btn-link"><i>Ir al sitio!</i></a>
+                        <a href="#" class="btn btn-success">37 <i class="fa fa-star color-yellow"></i></a>
                     </div>
                 @endforeach
                 <br>
@@ -66,13 +79,24 @@
 
             {{--<div class="result">
                 <hr>
-                <h4>Android desde cero en Escuela Digital <span class="label label-primary"><i
-                                class="fa fa-desktop"></i> Curso online</span></h4>
-                <a href="#">http://escuela.digital/android-desde-cero</a>
-                <p>Este curso es premium y es la versión 2017, clases grabadas en vivo...</p>
-            </div>
+                <h4>Android desde cero en Escuela Digital
+                    <span class="label label-primary span-left">
+                            <i class="fa fa-desktop"></i> Curso online
+                    </span>
+                    --}}{{--<span class="span-left">37 <i class="fa fa-star color-yellow"></i></span>--}}{{--
+                    --}}{{--<button class="btn btn-sm btn-success float-right">
+                        37 favs <i class="fa fa-star color-yellow"></i>
+                    </button>--}}{{--
+                    <span class="text-gray float-right hidden-xs">Added by Hiram Guerrero 3 months ago</span>
+                </h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet dolor earum eligendi exercitationem
+                    fugiat illum minus obcaecati quaerat quis quos. Assumenda, porro, vitae. Beatae explicabo
+                    necessitatibus numquam tempora voluptatibus. Laudantium.</p>
+                <a href="#" class="btn btn-link"><i>Ir al sitio!</i></a>
+                <a href="#" class="btn btn-success">37 <i class="fa fa-star color-yellow"></i></a>
+            </div>--}}
 
-            <div class="result">
+            {{--<div class="result">
                 <hr>
                 <h4>Todo Android <span class="label label-danger"><i
                                 class="fa fa-youtube"></i> Canal</span></h4>
@@ -89,6 +113,35 @@
             </div>--}}
         </section>
     </div>
+
+    {{--<div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">
+                        Android desde cero en Escuela Digital
+                        <span class="label label-primary span-left">
+                            <i class="fa fa-desktop"></i> Curso online
+                        </span>
+                        --}}{{--<span class="span-left">37 <i class="fa fa-star color-yellow"></i></span>--}}{{--
+                        <button class="btn btn-sm btn-success float-right">37 favs <i
+                                    class="fa fa-star color-yellow"></i>
+                        </button>
+                    </h4>
+                    <h6 class="card-subtitle mb-2 text-primary">
+                        <span class="text-gray span-left">Added by Hiram Guerrero 3 months ago</span>
+                    </h6>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, aliquid assumenda dignissimos
+                        distinctio dolor expedita explicabo, hic illo incidunt iure libero minus odio officiis
+                        perspiciatis quisquam recusandae sequi soluta veniam?
+                    </p>
+                    <a href="#" target="_blank" class="card-link btn btn-primary">Llevame al sitio!</a>
+                    --}}{{--<a href="#" class="card-link">Another link</a>--}}{{--
+                </div>
+            </div>
+        </div>
+    </div>--}}
 @endsection
 
 @section('script')
