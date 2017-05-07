@@ -4,7 +4,7 @@
 // Variables
 @import "variables";
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 body {
   max-width: 1200px;
@@ -247,4 +247,8 @@ hr.styled-hr:after {
     background: #fdfdfd;
     text-decoration: none;
   }
+}
+
+.form-inline {
+  display: inline-block;
 }

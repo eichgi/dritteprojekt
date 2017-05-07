@@ -31,4 +31,6 @@ Route::get('/buscar', 'MainController@buscar');
 Route::get('/about', 'MainController@about');
 Route::get('/joker', 'JokerController@joker');
 
+Route::post('/star/fav', 'StarController@favHandler');
 Route::resource('resource', 'ResourceController');
+//Route::resource('star', 'StarController');

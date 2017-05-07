@@ -1,8 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="row">
+        @include('partials.flash-message')
         <section id="section-busqueda" class="card col-md-10 col-md-offset-1">
             {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
             <div class="form-group">
@@ -64,7 +65,18 @@
                         </h4>
                         <p>{{$recurso->description}}</p>
                         <a href="#" class="btn btn-link"><i>Ir al sitio!</i></a>
-                        <a href="#" class="btn btn-success">37 <i class="fa fa-star color-yellow"></i></a>
+                        @if(session('usuario_id', ''))
+                            {{--{!! Form::open(['url' => '/star/$', 'method' => 'DELETE', 'class' => 'form-inline']) !!}
+                            <button class="btn btn-success">{{ count(\App\Resource::find($recurso->id)->stars) }} <i class="fa fa-star color-yellow"></i></button>
+                            <input type="hidden" name="resource" value="{{$recurso->id}}">
+                            {!! Form::close() !!}--}}
+                            <button class="btn btn-success btn-fav" data-id="{{$recurso->id}}">
+                                <span class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>
+                                <i class="fa fa-star color-yellow"></i>
+                            </button>
+                        @else
+                            <button class="btn btn-default">37 <i class="fa fa-star color-yellow"></i></button>
+                        @endif
                     </div>
                 @endforeach
                 <br>
@@ -146,6 +158,13 @@
 
 @section('script')
     <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $('.btn-filtro').click(function (e) {
             $('.filter-container').toggle();
         });
@@ -155,6 +174,27 @@
                 $('.filter-container').show();
             }
         }
+
+        $('.btn-fav').click(function (e) {
+            var btn = this;
+            var id = $(this).data('id');
+            $.ajax({
+                url: 'http://localhost/dritteprojekt/public/star/fav',
+                method: 'POST',
+                data: {id: id},
+                dataType: 'JSON',
+                success: function (response) {
+                    console.log(response);
+                    if (response.status === 'OK') {
+                        var counter = parseInt($(btn).find('.star-counter').html());
+                        console.log(counter);
+                        counter++;
+                        $(btn).find('.star-counter').html(counter);
+                    }
+                }
+
+            });
+        });
 
         displayIfPicked();
     </script>

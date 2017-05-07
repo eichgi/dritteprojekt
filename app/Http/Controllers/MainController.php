@@ -52,6 +52,7 @@ class MainController extends Controller
             $recursos = DB::table('resources')
                 ->join('types', 'types.id', '=', 'resources.type_id')
                 ->join('users', 'users.id', '=', 'resources.user_id')
+                //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
                 ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as user')
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
                 ->latest()
@@ -64,15 +65,14 @@ class MainController extends Controller
             $recursos = DB::table('resources')
                 ->join('types', 'types.id', '=', 'resources.type_id')
                 ->join('users', 'users.id', '=', 'resources.user_id')
+                //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
                 ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as user')
                 ->where([
                     ['resources.name', 'like', "%{$request->searching}%"]
                     //['resources.type_id', '=', '1']
                 ])
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
-                //->get();
                 ->paginate(5);
-
             return view('buscador', compact('recursos', 'types', 'searching', 'filtering'));
         }
     }

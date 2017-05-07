@@ -25,4 +25,9 @@ class Resource extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function stars()
+    {
+        return $this->hasMany('App\Star');
+    }
 }

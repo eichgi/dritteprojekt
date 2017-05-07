@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Language;
 use App\Resource;
+use App\Star;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -39,5 +40,14 @@ class JokerController extends Controller
 
         /*$recurso = Resource::find(3);
         dd($recurso->user);*/
+
+        /*$recurso = Resource::find(2);
+        dd($recurso->stars);*/
+
+        $star = Star::find(1);
+        dd($star->resource);
+
+        /*$recurso = Resource::withCount('name')->get();
+        dd($recurso->name_count);*/
     }
 }
