@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGithubUsersTable extends Migration
+class CreateBitbucketUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateGithubUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('github_users', function (Blueprint $table) {
-            $table->integer('user_id');
+        Schema::create('bitbucket_users', function (Blueprint $table) {
+            $table->string('user_id');
             $table->string('nickname');
             $table->string('avatar');
-            $table->string('profile_url');
-            $table->string('bio');
+            $table->string('website')->nullable();
             $table->timestamps();
             $table->primary('user_id');
-            $table->foreign('user_id')->references('github_id')->on('users');
+            $table->foreign('user_id')->references('bitbucket_id')->on('users');
             $table->softDeletes();
         });
     }
@@ -33,6 +32,6 @@ class CreateGithubUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('github_users');
+        Schema::dropIfExists('bitbucket_users');
     }
 }

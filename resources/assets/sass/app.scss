@@ -246,9 +246,15 @@ hr.styled-hr:after {
     border-radius: 5px;
     background: #fdfdfd;
     text-decoration: none;
+    background: #666;
+    color: white;
   }
 }
 
 .form-inline {
   display: inline-block;
+}
+
+.btn-default {
+  border: 1px solid #AAA;
 }

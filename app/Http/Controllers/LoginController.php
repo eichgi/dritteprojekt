@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BitbucketUser;
 use App\GithubUser;
 use App\User;
 use Illuminate\Http\Request;
@@ -91,25 +92,87 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user, $provider)
     {
-        $newUser = User::where('provider_id', $user->id)->first();
 
-        if (count($newUser) == 0) {
+        $isUser = User::where('email', $user->email)->first();
+
+        if (count($isUser)) {
+
+            //Revisar de que proveedor viene
+            if ($provider == 'github') {
+                $githubUser = User::where('github_id', $user->id)->first();
+
+                if (count($githubUser)) {
+
+                    $newUser = $githubUser;
+                } else {
+                    $isUser->github_id = $user->id;
+                    $isUser->save();
+
+                    GithubUser::create([
+                        'user_id' => $user->id,
+                        'nickname' => $user->nickname,
+                        'avatar' => $user->avatar,
+                        'profile_url' => $user->user['html_url'],
+                        'bio' => $user->user['bio']
+                    ]);
+
+                    $newUser = User::where('github_id', $user->id)->first();
+                }
+
+            } else if ($provider == 'bitbucket') {
+                $bitbucketUser = User::where('bitbucket_id', $user->id)->first();
+
+                if (count($bitbucketUser)) {
+
+                    $newUser = $bitbucketUser;
+                } else {
+                    $isUser->bitbucket_id = $user->id;
+                    $isUser->save();
+
+                    BitbucketUser::create([
+                        'user_id' => $user->id,
+                        'nickname' => $user->nickname,
+                        'avatar' => $user->avatar,
+                        'website' => $user->user['website']
+                    ]);
+
+                    $newUser = User::where('bitbucket_id', $user->id)->first();
+                }
+            }
+
+        } else {
+
             $newUser = new User;
             $newUser->name = $user->name;
             $newUser->email = $user->email;
-            $newUser->provider = $provider;
-            $newUser->provider_id = $user->id;
+            if ($provider == 'github') {
+                $newUser->github_id = $user->id;
+            } else if ($provider == 'bitbucket') {
+                $newUser->bitbucket_id = $user->id;
+            }
             $newUser->save();
 
-            GithubUser::create([
-                'user_id' => $user->id,
-                'nickname' => $user->nickname,
-                'avatar' => $user->avatar,
-                'profile_url' => $user->user['html_url'],
-                'bio' => $user->user['bio']
-            ]);
+            if ($provider == 'github') {
+                GithubUser::create([
+                    'user_id' => $user->id,
+                    'nickname' => $user->nickname,
+                    'avatar' => $user->avatar,
+                    'profile_url' => $user->user['html_url'],
+                    'bio' => $user->user['bio']
+                ]);
 
-            $newUser = User::where('provider_id', $user->id)->first();
+                $newUser = User::where('github_id', $user->id)->first();
+            } else if ($provider == 'bitbucket') {
+                BitbucketUser::create([
+                    'user_id' => $user->id,
+                    'nickname' => $user->nickname,
+                    'avatar' => $user->avatar,
+                    'website' => $user->user['website']
+                ]);
+
+                $newUser = User::where('bitbucket_id', $user->id)->first();
+            }
+
         }
 
         session(['email' => $newUser->email]);

@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password')->nullable();
-            $table->string('provider')->nullable();
-            $table->integer('provider_id')->nullable()->unique();
+            $table->integer('github_id')->nullable()->unique();
+            $table->string('bitbucket_id')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

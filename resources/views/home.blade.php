@@ -68,7 +68,8 @@
             &nbsp;
             &nbsp;
             &nbsp;
-            <a href="{{url('#')}}" class="btn btn-primary btn-lg" disabled>
+            <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/bitbucket')}}"
+               class="btn btn-primary btn-lg">
                 Entrar con Bitbucket
                 <i class="fa fa-bitbucket"></i>
             </a>
