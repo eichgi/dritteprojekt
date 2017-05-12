@@ -14,7 +14,7 @@ class GithubUser extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'provider_id');
+        return $this->belongsTo('App\User', 'github_id');
     }
 
 }

@@ -47,4 +47,10 @@ return [
         'redirect' => env('BITBUCKET_REDIRECT_URL'),
     ],
 
+    'gitlab' => [
+        'client_id' => env('GITLAB_KEY'),
+        'client_secret' => env('GITLAB_SECRET'),
+        'redirect' => env('GITLAB_REDIRECT_URI'),
+    ],
+
 ];

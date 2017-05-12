@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5e12f0c19666b1cab650248e35028d0a",
-    "content-hash": "3508e551ad7940459d1f3df3929dc4eb",
+    "hash": "46d4992d27c7457f44e87937d5eacab4",
+    "content-hash": "e15e4f04ab70c162ac8b93d481023edd",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1382,6 +1382,85 @@
             "time": "2017-03-18 15:38:09"
         },
         {
+            "name": "socialiteproviders/gitlab",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/GitLab.git",
+                "reference": "c96dc004563a3caf157608fe9aa9e45c79065d00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/GitLab/zipball/c96dc004563a3caf157608fe9aa9e45c79065d00",
+                "reference": "c96dc004563a3caf157608fe9aa9e45c79065d00",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\GitLab\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoffer Martinsen",
+                    "email": "christoffermartinsen@gmail.com"
+                }
+            ],
+            "description": "GitLab OAuth2 Provider for Laravel Socialite",
+            "time": "2017-01-31 05:06:13"
+        },
+        {
+            "name": "socialiteproviders/manager",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Manager.git",
+                "reference": "f57877e96c46f0f9157fcd8fa68a547f6d344ed5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/f57877e96c46f0f9157fcd8fa68a547f6d344ed5",
+                "reference": "f57877e96c46f0f9157fcd8fa68a547f6d344ed5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/socialite": "~3.0",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Manager\\": "src/",
+                    "SocialiteProviders\\Manager\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Wendt",
+                    "email": "andy@awendt.com"
+                }
+            ],
+            "description": "Easily add new or override built-in providers in Laravel Socialite.",
+            "time": "2017-02-07 07:26:42"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.6",
             "source": {
@@ -2416,12 +2495,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },

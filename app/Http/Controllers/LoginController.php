@@ -6,7 +6,6 @@ use App\BitbucketUser;
 use App\GithubUser;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -73,7 +72,8 @@ class LoginController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        //return Socialite::driver($provider)->redirect();
+        return Socialite::with($provider)->redirect();
     }
 
     /**
@@ -84,6 +84,8 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
+
+        dd($user);
 
         if ($this->findOrCreateUser($user, $provider)) {
             return redirect('/');
@@ -109,7 +111,7 @@ class LoginController extends Controller
                     $isUser->save();
 
                     GithubUser::create([
-                        'user_id' => $user->id,
+                        'id' => $user->id,
                         'nickname' => $user->nickname,
                         'avatar' => $user->avatar,
                         'profile_url' => $user->user['html_url'],
@@ -154,7 +156,7 @@ class LoginController extends Controller
 
             if ($provider == 'github') {
                 GithubUser::create([
-                    'user_id' => $user->id,
+                    'id' => $user->id,
                     'nickname' => $user->nickname,
                     'avatar' => $user->avatar,
                     'profile_url' => $user->user['html_url'],

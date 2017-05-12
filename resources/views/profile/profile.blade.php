@@ -15,7 +15,7 @@
                     <p><a href="{{$github->profile_url}}" target="_blank">{{$github->nickname}} on Github</a></p>
                 @endif
                 <p><a href="mailto:{{$usuario->email}}">{{$usuario->email}}</a></p>
-                <p>Has compartido {{$usuario->count}} recursos</p>
+                <p>Has compartido {{$usuario->resources->count()}} recursos</p>
                 @if(isset($github->bio))
                     <p>Bio: {{$github->bio}}</p>
                 @endif

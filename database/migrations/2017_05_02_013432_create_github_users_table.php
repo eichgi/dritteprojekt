@@ -14,14 +14,14 @@ class CreateGithubUsersTable extends Migration
     public function up()
     {
         Schema::create('github_users', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->integer('id');
             $table->string('nickname');
             $table->string('avatar');
             $table->string('profile_url');
             $table->string('bio');
             $table->timestamps();
-            $table->primary('user_id');
-            $table->foreign('user_id')->references('github_id')->on('users');
+            $table->primary('id');
+            //$table->foreign('user_id')->references('github_id')->on('users');
             $table->softDeletes();
         });
     }

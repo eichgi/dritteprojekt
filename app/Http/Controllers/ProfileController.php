@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BitbucketUser;
 use App\GithubUser;
 use App\User;
 use Illuminate\Http\Request;
@@ -25,9 +26,18 @@ class ProfileController extends Controller
     public function index()
     {
         $usuario = User::find(session('usuario_id'));
-        $github = GithubUser::where('user_id', $usuario->provider_id)->first();
-        $count = User::find(session('usuario_id'))->resources->count();
-        $usuario->count = $count;
+
+        if ($usuario->github_id) {
+            $github = GithubUser::where('id', $usuario->github_id)->first();
+        }
+
+        if ($usuario->bitbucket_id) {
+            $bitbucket = BitbucketUser::where('user_id', $usuario->github_id)->first();
+        }
+
+        //$count = User::find(session('usuario_id'))->resources->count();
+        //$usuario->count = $count;
+        //dd($usuario->githubUser);
         return view('profile.profile', compact('usuario', 'github'));
     }
 

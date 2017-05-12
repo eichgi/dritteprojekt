@@ -63,15 +63,15 @@
                 Entrar con Github
                 <i class="fa fa-github"></i>
             </a>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
             <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/bitbucket')}}"
                class="btn btn-primary btn-lg">
                 Entrar con Bitbucket
                 <i class="fa fa-bitbucket"></i>
+            </a>
+            <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/gitlab')}}"
+               class="btn btn-primary btn-lg">
+                Entrar con GitLab
+                <i class="fa fa-gitlab"></i>
             </a>
         </section>
     </div>
