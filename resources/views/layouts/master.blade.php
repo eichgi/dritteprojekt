@@ -28,6 +28,9 @@
     </style>--}}
 </head>
 <body>
+{{--<div class="fixed">
+    <p>Hola a todos</p>
+</div>--}}
 @include('partials.navbar')
 <div class="container-fluid">
     @yield('content')

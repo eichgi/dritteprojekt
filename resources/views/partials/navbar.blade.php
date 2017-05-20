@@ -38,7 +38,7 @@
             </form>--}}
             <ul class="nav navbar-nav navbar-right">
                 @if(session('usuario_id') == '')
-                    <li><a href="{{url('/login')}}">ENTRAR</a></li>
+                    {{--<li><a href="{{url('/login')}}">ENTRAR</a></li>--}}
                 @else
                     <li><a href="{{url('/profile')}}">PERFIL</a></li>
                     <li><a href="{{url('/resource')}}">RECURSOS</a></li>

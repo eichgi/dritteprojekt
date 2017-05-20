@@ -75,7 +75,7 @@
                                 <i class="fa fa-star color-yellow"></i>
                             </button>
                         @else
-                            <button class="btn btn-default">37 <i class="fa fa-star color-yellow"></i></button>
+                            <button class="btn btn-default btn-fav">37 <i class="fa fa-star color-yellow"></i></button>
                         @endif
                     </div>
                 @endforeach
@@ -154,6 +154,11 @@
             </div>
         </div>
     </div>--}}
+
+    <div class="alert alert-block alert-fixed" style="display: none">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong></strong>
+    </div>
 @endsection
 
 @section('script')
@@ -175,6 +180,17 @@
             }
         }
 
+        function notify(type, message) {
+            var alert = $('.alert');
+
+            $(alert).addClass(type).show(300);
+            $('.alert strong').html(message);
+            setTimeout(function () {
+                $(alert).removeClass(type).hide(300);
+            }, 1750);
+
+        }
+
         $('.btn-fav').click(function (e) {
             var btn = this;
             var id = $(this).data('id');
@@ -190,9 +206,14 @@
                         console.log(counter);
                         counter++;
                         $(btn).find('.star-counter').html(counter);
+                        notify('alert-success', response.message);
+                    } else {
+                        notify('alert-danger', response.message);
                     }
+                },
+                error: function (response) {
+                    notify('alert-danger', 'You need to login to fav');
                 }
-
             });
         });
 

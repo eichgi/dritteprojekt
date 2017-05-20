@@ -14,7 +14,7 @@ class StarController extends Controller
      */
     public function index()
     {
-        //
+        $this->middleware('checkAuth');
     }
 
     /**
@@ -119,12 +119,13 @@ class StarController extends Controller
             $star->save();
 
             return response()->json([
-                'status' => 'OK'
+                'status' => 'OK',
+                'message' => 'You star this!'
             ]);
         } else {
             return response()->json([
                 'status' => 'ERROR',
-                'message' => 'You already starred'
+                'message' => 'You already starred this'
             ]);
         }
     }

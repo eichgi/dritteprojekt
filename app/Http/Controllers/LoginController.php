@@ -85,7 +85,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver($provider)->user();
 
-        dd($user);
+        //dd($user);
 
         if ($this->findOrCreateUser($user, $provider)) {
             return redirect('/');

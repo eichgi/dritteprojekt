@@ -9,13 +9,15 @@
                 <p>Este proyecto se creó con la finalidad de compartir recursos sobre programación, todos en algún
                     momento nos hemos encontrado con la necesidad de aprender sobre alguna tecnología, herramienta,
                     lenguaje, etc... Ya sea que hallas leído algún libro, visto vídeos en Youtube o comprado cursos en
-                    plataformas de pago puedes venir aquí y compartir tu experiencia con una comunidad de programadores
-                    que esta en constante crecimiento y hambrientos de aprender y dominar nuevas herramientas.</p>
+                    plataformas de pago puedes venir aquí y compartir tu experiencia sobre cual y como dicho material te
+                    ayudo a aprender. Aquí encontrarás con una comunidad de programadores que esta en constante
+                    crecimiento y hambrientos de aprender y dominar nuevas herramientas.</p>
             </div>
 
             <div class="pregunta card">
                 <h4>¿Interesado en participar?</h4>
-                <p>Por favor registrate con GitHub y empieza a compartir el material que tanto te ha ayudado a aprender
+                <p>Ve a <a href="{{url('/resource')}}">recursos</a> y empieza a compartir el material que tanto te ha
+                    ayudado a aprender
                     y que sabes que también le puede servir a alguien más!</p>
             </div>
 

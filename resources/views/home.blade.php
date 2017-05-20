@@ -57,23 +57,34 @@
     </div>
 
     <div class="row">
-        <section id="section-support" class="col-xs-12">
-            <h1>¿Interesado en participar y compartir?</h1>
-            <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/github')}}" class="btn btn-primary btn-lg">
-                Entrar con Github
-                <i class="fa fa-github"></i>
-            </a>
-            <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/bitbucket')}}"
-               class="btn btn-primary btn-lg">
-                Entrar con Bitbucket
-                <i class="fa fa-bitbucket"></i>
-            </a>
-            <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/gitlab')}}"
-               class="btn btn-primary btn-lg">
-                Entrar con GitLab
-                <i class="fa fa-gitlab"></i>
-            </a>
-        </section>
+        @if(!session('usuario_id', ''))
+            <section id="section-support" class="col-xs-12">
+                <h1>¿Interesado en participar y compartir?</h1>
+                <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/github')}}"
+                   class="btn btn-github btn-lg">
+                    Entrar con Github
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/bitbucket')}}"
+                   class="btn btn-primary btn-lg">
+                    Entrar con Bitbucket
+                    <i class="fa fa-bitbucket"></i>
+                </a>
+                <a href="{{url( session('usuario_id', '') != '' ? '#' : '#')}}"
+                   class="btn btn-gitlab btn-lg" disabled>
+                    Entrar con GitLab
+                    <i class="fa fa-gitlab"></i>
+                </a>
+            </section>
+        @else
+            <div id="section-support" class="col-xs-12">
+                <h1>Empieza a compartir tu conocimiento con la comunidad!</h1>
+                <a href="{{url('/resource')}}" class="btn btn-github btn-lg">
+                    Agregar recurso
+                    <i class="fa fa-cubes"></i>
+                </a>
+            </div>
+        @endif
     </div>
 
 @endsection
