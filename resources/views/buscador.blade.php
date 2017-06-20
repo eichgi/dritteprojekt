@@ -164,6 +164,8 @@
 @section('script')
     <script>
 
+        var baseUrl = 'http://dritteprojekt.dev';
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -195,7 +197,8 @@
             var btn = this;
             var id = $(this).data('id');
             $.ajax({
-                url: 'http://localhost/dritteprojekt/public/star/fav',
+                //url: 'http://localhost/dritteprojekt/public/star/fav',
+                url: baseUrl + '/star/fav',
                 method: 'POST',
                 data: {id: id},
                 dataType: 'JSON',

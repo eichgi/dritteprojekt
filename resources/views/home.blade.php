@@ -7,7 +7,7 @@
             <h1>¿Qué deseas aprender?</h1>
             {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
             <div class="form-group col-xs-10 col-xs-offset-1">
-                {{Form::text('searching', null, ['class' => 'form-control', 'required' => 'required'])}}
+                {{Form::text('searching', null, ['class' => 'form-control input-search', 'required' => 'required', 'autocomplete' => 'off'])}}
             </div>
             <div class="form-group">
                 {{Form::submit('BUSCAR', ['class' => 'btn btn-primary btn-lg'])}}
@@ -78,7 +78,8 @@
             </section>
         @else
             <div id="section-support" class="col-xs-12">
-                <h1>Empieza a compartir tu conocimiento con la comunidad!</h1>
+                <h1>¡Empieza a compartir tu conocimiento con la comunidad!</h1>
+                <br>
                 <a href="{{url('/resource')}}" class="btn btn-github btn-lg">
                     Agregar recurso
                     <i class="fa fa-cubes"></i>

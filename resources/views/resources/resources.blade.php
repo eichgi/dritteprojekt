@@ -3,6 +3,12 @@
 @section('content')
     <div class="row">
 
+        <style>
+            #table-resources {
+                overflow-x: auto;
+            }
+        </style>
+
         @include('partials.flash-message')
 
         <div id="section-resources" class="col-sm-10 col-sm-offset-1 card">
@@ -31,12 +37,15 @@
                                 <td>{{$resource->name}}</td>
                                 <td><a href="{{$resource->link}}" target="_blank">{{$resource->link}}</a></td>
                                 <td>{{$resource->language->name}}</td>
-                                <td>
+                                <td class="space-around">
                                     <a href="{{url("/resource/$resource->id/edit")}}" style="display: inline-block">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    {!! Form::open(['url' => "/resource/$resource->id", 'method' => 'DELETE', 'class' => 'inline-block']) !!}
-                                    {{Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger'])}}
+                                    <a href="#" class="btn-eliminar">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                    {!! Form::open(['url' => "/resource/$resource->id", 'method' => 'DELETE', 'class' => 'inline-block actions']) !!}
+                                    {{Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger', 'style' => 'display: none'])}}
                                     {!! Form::close() !!}
                                 </td>
                             </tr>
@@ -67,6 +76,11 @@
 
 @section('script')
     <script>
+
+        $('.btn-eliminar').click(function () {
+            $(this).siblings('.actions').find('input[type=submit]').click();
+        });
+
 
         $('#new-resource').click(function () {
             $(this).parent().addClass('active').siblings().removeClass('active');

@@ -16,9 +16,8 @@
 
             <div class="pregunta card">
                 <h4>¿Interesado en participar?</h4>
-                <p>Ve a <a href="{{url('/resource')}}">recursos</a> y empieza a compartir el material que tanto te ha
-                    ayudado a aprender
-                    y que sabes que también le puede servir a alguien más!</p>
+                <p>Una vez que te hayas registrado debes ir a <a href="{{url('/resource')}}">recursos</a> y empieza a compartir el material que tanto te ha
+                    ayudado a aprender y que sabes que también le puede servir a alguien más!</p>
             </div>
 
             <div class="pregunta card">

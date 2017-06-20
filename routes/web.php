@@ -29,7 +29,7 @@ Route::resource('profile', 'ProfileController');
 
 Route::get('/buscar', 'MainController@buscar');
 Route::get('/about', 'MainController@about');
-Route::get('/joker', 'JokerController@joker');
+Route::get('/joker', 'JokerController@resources');
 
 Route::post('/star/fav', 'StarController@favHandler');
 Route::resource('resource', 'ResourceController');

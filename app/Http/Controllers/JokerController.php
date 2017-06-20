@@ -50,4 +50,15 @@ class JokerController extends Controller
         /*$recurso = Resource::withCount('name')->get();
         dd($recurso->name_count);*/
     }
+
+    public function resources()
+    {
+        $recurso = Resource::onlyTrashed()->where('id', 2);
+        $recurso->restore();
+        exit;
+
+        $resources = Resource::all();
+        //$resources = Resource::withTrashed()->get();
+        dd($resources);
+    }
 }

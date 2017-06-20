@@ -22,7 +22,7 @@ class ResourceController extends Controller
         $types = Type::pluck('name', 'id');
         $method = 'POST';
         $url = '/resource';
-        return view('resources', compact('resources', 'languages', 'types', 'method', 'url'));
+        return view('resources.resources', compact('resources', 'languages', 'types', 'method', 'url'));
     }
 
     /**

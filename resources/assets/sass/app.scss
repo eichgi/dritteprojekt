@@ -24,6 +24,7 @@ body {
 
 .custom-navbar {
   margin-bottom: 0;
+  border-radius: 0px;
 }
 
 .card {
@@ -38,9 +39,12 @@ body {
 }
 
 #section-searching {
-  background-color: $color-blue;
+  background-color: inherit;
   text-align: center;
   padding: 2em 0;
+
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
 
   h1, h2, h3, h4, h5, h6 {
     color: $color-semi-black;
@@ -54,6 +58,8 @@ body {
 #section-info {
   background-color: $color-orange;
   padding: 2em 0;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
 
   h1, h2, h3, h4, h5, h6 {
     text-align: center;
@@ -142,6 +148,7 @@ footer {
 #section-profile {
 
   margin-top: 1em;
+  min-height: 80vh;
 
   .img-container {
     @media(max-width: 480px) {
@@ -354,3 +361,52 @@ hr.styled-hr:after {
   width: 40%;
   border-radius: 0px;
 }
+
+.input-search {
+  border: none;
+  background: inherit;
+  box-shadow: none;
+  border-bottom: 1px solid #444;
+  color: #444;
+  text-align: center;
+  font-size: 2em;
+  line-height: 100%;
+  padding-bottom: 5px;
+  border-radius: 0;
+}
+
+.input-search:focus {
+  box-shadow: none;
+  border-bottom: 1.5px solid #444;
+}
+
+#section-support {
+
+  & > .btn {
+    @media(max-width: 767px) {
+      width: 13em;
+      margin: 0.5em;
+    }
+  }
+}
+
+.pregunta.card {
+  & > h4 {
+    @media(max-width: 767px) {
+      text-align: center;
+    }
+  }
+}
+
+.space-around {
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+table thead th,
+table tbody {
+  text-align: center;
+}
+
+
