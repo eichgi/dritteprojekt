@@ -51,7 +51,7 @@ class MainController extends Controller
             /** If searching was empty, we will response with the six latest resources added */
             $recursos = DB::table('resources')
                 ->join('types', 'types.id', '=', 'resources.type_id')
-                ->join('users', 'users.id', '=', 'resources.user_id')
+                ->leftJoin('users', 'users.id', '=', 'resources.user_id')
                 //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
                 ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as user')
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
@@ -65,7 +65,7 @@ class MainController extends Controller
         } else {
             $recursos = DB::table('resources')
                 ->join('types', 'types.id', '=', 'resources.type_id')
-                ->join('users', 'users.id', '=', 'resources.user_id')
+                ->leftJoin('users', 'users.id', '=', 'resources.user_id')
                 //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
                 ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as user')
                 ->where([

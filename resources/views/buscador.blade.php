@@ -164,8 +164,6 @@
 @section('script')
     <script>
 
-        var baseUrl = 'http://dritteprojekt.dev';
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -185,10 +183,10 @@
         function notify(type, message) {
             var alert = $('.alert');
 
-            $(alert).addClass(type).show(300);
+            $(alert).addClass(type).show(500);
             $('.alert strong').html(message);
             setTimeout(function () {
-                $(alert).removeClass(type).hide(300);
+                $(alert).removeClass(type).hide(500);
             }, 1750);
 
         }
@@ -197,8 +195,7 @@
             var btn = this;
             var id = $(this).data('id');
             $.ajax({
-                //url: 'http://localhost/dritteprojekt/public/star/fav',
-                url: baseUrl + '/star/fav',
+                url: '{{url('/star/fav')}}',
                 method: 'POST',
                 data: {id: id},
                 dataType: 'JSON',

@@ -98,7 +98,7 @@ class ResourceController extends Controller
         $recurso = Resource::find($id);
         $url = "/resource/$recurso->id";
 
-        return view('resources', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
+        return view('resources.resources', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
     }
 
     /**
