@@ -65,8 +65,8 @@
                     Entrar con Github
                     <i class="fa fa-github"></i>
                 </a>
-                <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/bitbucket')}}"
-                   class="btn btn-primary btn-lg">
+                <a href="{{url('#')}}"
+                   class="btn btn-primary btn-lg" disabled>
                     Entrar con Bitbucket
                     <i class="fa fa-bitbucket"></i>
                 </a>

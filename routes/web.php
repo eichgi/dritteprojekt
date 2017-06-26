@@ -17,8 +17,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', 'LoginController@index');
-Route::post('/login', 'LoginController@login');
+Route::get('/login', function () {
+    return redirect('/');
+});
+//Route::get('/login', 'LoginController@index');
+//Route::post('/login', 'LoginController@login');
 Route::get('/signup', 'LoginController@signUpForm');
 Route::post('/signup', 'LoginController@signUp');
 Route::get('/login/{provider}', 'LoginController@redirectToProvider');
