@@ -5,8 +5,8 @@
         <div class="col-md-10 col-md-offset-1">
             <br>
             <div class="pregunta card">
-                <h4>¿Qué es Dritte Projekt?</h4>
-                <p>Este proyecto se creó con la finalidad de compartir recursos sobre programación, todos en algún
+                <h4>¿Qué es Rovix?</h4>
+                <p>La finalidad de Rovix es compartir recursos sobre programación, todos en algún
                     momento nos hemos encontrado con la necesidad de aprender sobre alguna tecnología, herramienta,
                     lenguaje, etc... Ya sea que hallas leído algún libro, visto vídeos en Youtube o comprado cursos en
                     plataformas de pago puedes venir aquí y compartir tu experiencia sobre cual y como dicho material te
@@ -16,7 +16,8 @@
 
             <div class="pregunta card">
                 <h4>¿Interesado en participar?</h4>
-                <p>Una vez que te hayas registrado debes ir a <a href="{{url('/resource')}}">recursos</a> y empieza a compartir el material que tanto te ha
+                <p>Una vez que te hayas registrado debes ir a <a href="{{url('/resource')}}">recursos</a> y empieza a
+                    compartir el material que tanto te ha
                     ayudado a aprender y que sabes que también le puede servir a alguien más!</p>
             </div>
 

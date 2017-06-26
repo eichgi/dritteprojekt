@@ -8,7 +8,8 @@
             {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
             <div class="form-group">
                 <input type="text" class="form-control" name="searching" placeholder="Escribe tu busqueda..."
-                       value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}">
+                       value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}"
+                       autocomplete="off">
             </div>
             <div class="form-group">
                 <div class="btn btn-sm btn-default btn-filtro">Filtrar</div>
