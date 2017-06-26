@@ -18,7 +18,7 @@ class CreateGithubUsersTable extends Migration
             $table->string('nickname');
             $table->string('avatar');
             $table->string('profile_url');
-            $table->string('bio');
+            $table->string('bio')->nullable();
             $table->timestamps();
             $table->primary('id');
             //$table->foreign('user_id')->references('github_id')->on('users');
